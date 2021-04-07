@@ -19,7 +19,7 @@ public class PlayerWeaponControl : MonoBehaviour
         for (int i = 0; i < projectilePoolSize; i++)
         {
             IProjectile instance = Instantiate(projectilePrefab).GetComponent<IProjectile>();
-            instance.SetPool(projectilePool);
+            instance.SetPool(projectilePool); // Leer comentario de abajo!
             projectilePool.Put(instance); // Molaría que esto fuera un Add y desde dentro llamar al IPoolable.OnPoolAdd(ObjectPool<?>);
         }
     }

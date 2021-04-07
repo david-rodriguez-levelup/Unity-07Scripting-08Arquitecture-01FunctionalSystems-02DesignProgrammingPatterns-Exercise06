@@ -5,12 +5,23 @@ public class PlayerWeaponControl : MonoBehaviour
 {
 
     [SerializeField] private string fireButton = "Fire1";
-    [SerializeField] protected Rigidbody projectilePrefab;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private int projectilePoolSize = 10;
     [SerializeField] private ILaunchAction launchAction;
-    
+
+    private ObjectPool<IProjectile> projectilePool = new ObjectPool<IProjectile>();
+
     private void Awake()
     {
         launchAction = GetComponent<ILaunchAction>();
+        launchAction.SetPool(projectilePool);
+
+        for (int i = 0; i < projectilePoolSize; i++)
+        {
+            IProjectile instance = Instantiate(projectilePrefab).GetComponent<IProjectile>();
+            instance.SetPool(projectilePool);
+            projectilePool.Put(instance); // Molaría que esto fuera un Add y desde dentro llamar al IPoolable.OnPoolAdd(ObjectPool<?>);
+        }
     }
 
     private void Update()
@@ -25,7 +36,7 @@ public class PlayerWeaponControl : MonoBehaviour
     {
         if (launchAction.CanLaunch())
         {
-            launchAction.Launch(projectilePrefab);
+            launchAction.Launch();
         } 
     }
 

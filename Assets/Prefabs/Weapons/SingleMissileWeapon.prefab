@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireButton: 
-  projectilePrefab: {fileID: 2869250547574237537, guid: 211229c437456914b9b0a5911581bb77, type: 3}
+  projectilePrefab: {fileID: 472527021832427138, guid: 211229c437456914b9b0a5911581bb77, type: 3}
+  projectilePoolSize: 10
 --- !u!114 &7201044670395887280
 MonoBehaviour:
   m_ObjectHideFlags: 0

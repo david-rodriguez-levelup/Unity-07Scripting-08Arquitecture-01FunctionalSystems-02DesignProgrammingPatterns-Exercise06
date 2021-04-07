@@ -2,7 +2,7 @@
 
 [RequireComponent(typeof(IChaseMotionAction))]
 [RequireComponent(typeof(LayerBasedNearestObjectSensor))]
-public class MissileProjectileControl : MonoBehaviour
+public class MissileProjectileControl : BaseProjectileControl
 {
 
     [SerializeField] private float speed = 20;
@@ -13,8 +13,9 @@ public class MissileProjectileControl : MonoBehaviour
 
     private Transform target;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         motionAction = GetComponent<IChaseMotionAction>();
         nearestEnemySensor = GetComponent<LayerBasedNearestObjectSensor>();
     }

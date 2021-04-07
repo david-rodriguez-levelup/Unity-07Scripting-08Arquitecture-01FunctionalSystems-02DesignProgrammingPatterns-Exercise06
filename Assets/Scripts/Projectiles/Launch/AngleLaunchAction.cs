@@ -9,7 +9,7 @@ public class AngleLaunchAction : AbstractLaunchAction
     [SerializeField]
     private float angle = 90;
 
-    public override void Launch(Rigidbody projectilePrefab)
+    public override void Launch()
     {
         //Assert.IsTrue(Time.inFixedTimeStep);
 
@@ -20,9 +20,13 @@ public class AngleLaunchAction : AbstractLaunchAction
             float degrees = fraction * i - (angle / 2) + (fraction / 2);
             float radians = Mathf.Deg2Rad * degrees;
             Vector3 direction = new Vector3(Mathf.Sin(radians), Mathf.Cos(radians), 0f);
+            
+            Rigidbody rb = base.TryGetInstance(Quaternion.Euler(direction));
 
-            var projectile = Instantiate(projectilePrefab, transform.position, Quaternion.Euler(direction));
-            projectile.AddForce(direction.normalized * base.launchForce);
+            if (rb != null)
+            {
+                rb.AddForce(direction.normalized * base.launchForce);
+            }
         }
     }
 

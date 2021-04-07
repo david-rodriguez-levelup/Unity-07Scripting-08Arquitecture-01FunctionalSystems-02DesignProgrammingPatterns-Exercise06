@@ -13,8 +13,7 @@ GameObject:
   - component: {fileID: 8723977811712274333}
   - component: {fileID: 2793955224354483849}
   - component: {fileID: 8927657757187507636}
-  - component: {fileID: -3264387688307728262}
-  - component: {fileID: -104512796408828188}
+  - component: {fileID: -6471488990115220075}
   - component: {fileID: 8027666936317447660}
   - component: {fileID: 2869250547574237537}
   m_Layer: 10
@@ -52,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624acd8cf0050694da7e5a38077732ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeout: 5
   speed: 15
   turnSpeed: 10
 --- !u!114 &8723977811712274333
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
---- !u!114 &-3264387688307728262
+--- !u!114 &-6471488990115220075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,26 +104,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 472527021832427138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16bfd03a1d4515469e307a9695b410d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b3028710ccf7884ba5263860fa6818e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyOn: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 512
---- !u!114 &-104512796408828188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472527021832427138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2ba5407200eb54fb0297dbbc6996f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeout: 3
+    m_Bits: 2560
 --- !u!136 &8027666936317447660
 CapsuleCollider:
   m_ObjectHideFlags: 0

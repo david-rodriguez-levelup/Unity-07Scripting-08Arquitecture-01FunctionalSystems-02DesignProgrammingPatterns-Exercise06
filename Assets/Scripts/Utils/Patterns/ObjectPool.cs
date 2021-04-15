@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ObjectPool<T> where T : IPoolable
 {
@@ -7,6 +8,18 @@ public class ObjectPool<T> where T : IPoolable
     public int Count => queue.Count;
 
     private readonly Queue<T> queue = new Queue<T>();
+
+    public void Init<Q>(Q prefab, int numSize) where Q : MonoBehaviour, IPoolable
+    {
+        for (int i = 0; i < numSize; i++)
+        {
+            T instance = GameObject.Instantiate(prefab).GetComponent<T>();
+Debug.Log($"-----------> {this}");
+Debug.Log($"-----------> {this as ObjectPool<IPoolable>}");
+            instance.SetPool(this as ObjectPool<IPoolable>);
+            Put(instance);
+        }
+    }
 
     public T Get()
     {

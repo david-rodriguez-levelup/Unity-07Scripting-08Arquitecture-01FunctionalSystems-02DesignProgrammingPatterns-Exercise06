@@ -9,7 +9,7 @@ public class BaseProjectileControl : MonoBehaviour, IProjectile
     private Rigidbody rb;
     private LayerBasedCollisionSensor layerBasedCollisionSensor;
 
-    private ObjectPool<IProjectile> pool;
+    private ObjectPool<IPoolable> pool;
 
     protected virtual void Awake()
     {
@@ -60,19 +60,22 @@ Debug.Log($"---------------- {name}: ReleaseFromCollision.");
 
     private void Release()
     {
+        Debug.Log($"---------------- {name}: ReleaseFromCoroutine.");
         pool.Put(this);
     }
 
     #region IPoolable
 
-    public void SetPool(ObjectPool<IProjectile> pool)
+    public void SetPool(ObjectPool<IPoolable> pool)
     {
+print(pool);
         this.pool = pool;
+print(this.pool);
     }
 
     public void OnPoolGet()
     {
-Debug.Log($"Instance: {name} SALE del pool (count: {pool.Count}).");
+Debug.Log($"Instance: {name} SALE del pool (count: {pool}).");
 
         gameObject.SetActive(true);
 
@@ -81,7 +84,7 @@ Debug.Log($"Instance: {name} SALE del pool (count: {pool.Count}).");
 
     public void OnPoolPut()
     {
-Debug.Log($"Instance: {name} VUELVE al pool (count: {pool.Count}).");
+Debug.Log($"Instance: {name} VUELVE al pool (count: {pool}).");
 
         StopAllCoroutines();
 
